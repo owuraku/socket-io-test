@@ -1,0 +1,27 @@
+<div>
+      <button [disabled]="!(loaded$ |async)" type="button" (click)="loginWithGoogle()" class="btn btn-danger">Login with Google</button>
+</div>
+
+<div>
+      <button [disabled]="!(user$ | async)" type="button" (click)="logOut()" class="btn btn-danger">Logout</button>
+</div>
+
+<pre>
+  <div>
+   {{ (user$ | async) | json }}
+  </div>
+</pre>
+<div style="border: 1px solid black; width: 90%; height: 400px; overflow-y: auto;">
+  <p *ngFor="let message of messages; trackBy : trackBy " >
+    {{ message?.author?.fullname}}: {{ message?.content}} ({{message.createdAt | date: 'longDate'}})
+  </p>
+
+</div>
+<input #m type="text" style="border: 2px solid green;height: 50px;">
+<button (click)="sendMessage(m.value)" >Send</button>
+<input #r type="text" placeholder="JOin ROom" style="border: 2px solid red;height: 30px;">
+
+<button (click)="joinRoom(r.value)" >Join</button>
+<button (click)="getRooms()" >Rooms</button>
+
+
